@@ -1,0 +1,44 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    events {
+      worker_connections 1024;
+    }
+
+    http {
+      upstream backend {
+        server backend-service:3000;
+      }
+
+      upstream frontend {
+        server frontend-service:8080;
+      }
+
+      server {
+        listen 80;
+
+        # Frontend routing
+        location / {
+          proxy_pass http://frontend;
+          proxy_set_header Host \System.Management.Automation.Internal.Host.InternalHost;
+          proxy_set_header X-Real-IP \;
+        }
+
+        # Backend API routing
+        location /api/ {
+          proxy_pass http://backend;
+          proxy_set_header Host \System.Management.Automation.Internal.Host.InternalHost;
+          proxy_set_header X-Real-IP \;
+        }
+
+        # Health check endpoint
+        location /health {
+          access_log off;
+          return 200 "healthy\n";
+          add_header Content-Type text/plain;
+        }
+      }
+    }

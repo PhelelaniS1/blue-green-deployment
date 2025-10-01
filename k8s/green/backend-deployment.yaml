@@ -1,0 +1,41 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-green
+  labels:
+    app: backend
+    version: green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+      version: green
+  template:
+    metadata:
+      labels:
+        app: backend
+        version: green
+    spec:
+      containers:
+      - name: backend
+        image: phelelanis1/task-manager-backend:green
+        ports:
+        - containerPort: 3000
+        env:
+        - name: APP_VERSION
+          value: "green-1.0.0"
+        - name: APP_COLOR
+          value: "green"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
