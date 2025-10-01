@@ -4,11 +4,15 @@
     "description":  "Task Manager Frontend",
     "scripts":  {
                     "test":  "echo \u0027No tests yet\u0027 \u0026\u0026 exit 0",
+                    "build":  "echo \u0027No build process yet\u0027",
                     "dev":  "node server.js",
                     "start":  "node server.js"
                 },
     "dependencies":  {
 
                      },
+    "engines":  {
+                    "node":  "\u003e=18.0.0"
+                },
     "main":  "server.js"
 }
