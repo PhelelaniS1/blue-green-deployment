@@ -46,10 +46,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: "18"
-        cache: "npm"
-        cache-dependency-path: |
-          backend/package-lock.json
-          frontend/package-lock.json
 
     - name: Install backend dependencies
       working-directory: ./backend
@@ -62,6 +58,12 @@ jobs:
       run: |
         npm install
         echo "✅ Frontend dependencies installed"
+
+    - name: Create package-lock files for caching
+      run: |
+        cd backend && npm install --package-lock-only
+        cd ../frontend && npm install --package-lock-only
+        echo "✅ Package-lock files created for caching"
 
     - name: Verify servers can start
       run: |
@@ -82,7 +84,7 @@ jobs:
         echo "✅ Configuration files are secure"
         echo "✅ Dockerfiles follow best practices"
 
-  success-validation:
+  final-validation:
     name: "🎯 Final Validation"
     runs-on: ubuntu-latest
     needs: [validate-structure, setup-and-test, security-scan]

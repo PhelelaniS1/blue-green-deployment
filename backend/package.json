@@ -6,7 +6,7 @@
                      },
     "name":  "task-manager-backend",
     "scripts":  {
-                    "test":  "echo \u0027No tests yet\u0027 \u0026\u0026 exit 0",
+                    "test":  "node test.js",
                     "dev":  "nodemon server.js",
                     "start":  "node server.js"
                 },
