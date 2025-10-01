@@ -1,14 +1,14 @@
 ﻿{
-  "name": "task-manager-frontend",
-  "version": "1.0.0",
-  "description": "Frontend for task manager",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "build": "webpack --mode production"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "axios": "^1.5.0"
-  }
+    "version":  "1.0.0",
+    "name":  "task-manager-frontend",
+    "description":  "Task Manager Frontend",
+    "scripts":  {
+                    "test":  "echo \u0027No tests yet\u0027 \u0026\u0026 exit 0",
+                    "dev":  "node server.js",
+                    "start":  "node server.js"
+                },
+    "dependencies":  {
+
+                     },
+    "main":  "server.js"
 }
